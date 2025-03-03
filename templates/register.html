@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .password-requirements {
+            font-size: 0.9em;
+            color: #666;
+            margin: 5px 0;
+        }
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 3px 0;
+        }
+        .requirement.valid::before {
+            content: "✓";
+            color: green;
+        }
+        .requirement.invalid::before {
+            content: "✗";
+            color: red;
+        }
+        .captcha-container {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .captcha-image {
+            padding: 5px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+        .refresh-captcha {
+            cursor: pointer;
+            color: #0066cc;
+            font-size: 0.9em;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>註冊帳號</h2>
+        <form action="/register" method="POST" id="registerForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="username">帳號：</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密碼：</label>
+                <input type="password" id="password" name="password" required onkeyup="checkPassword(this.value)">
+                <div class="password-requirements">
+                    密碼要求：
+                    <div class="requirement" id="length">至少 8 個字元</div>
+                    <div class="requirement" id="uppercase">包含大寫字母</div>
+                    <div class="requirement" id="lowercase">包含小寫字母</div>
+                    <div class="requirement" id="number">包含數字</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">確認密碼：</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required onkeyup="checkPasswordMatch()">
+                <div id="confirmPasswordError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="captcha">驗證碼：</label>
+                <div class="captcha-container">
+                    <img id="captchaImage" class="captcha-image" src="/captcha" alt="驗證碼">
+                    <span class="refresh-captcha" onclick="refreshCaptcha()">重新產生</span>
+                </div>
+                <input type="text" id="captcha" name="captcha" required>
+            </div>
+            <button type="submit" id="submitBtn" disabled>註冊</button>
+        </form>
+        <div class="separator">
+            <span>或</span>
+        </div>
+        <a href="/google_login" class="google-btn">
+            <img src="/images/google.jpg" alt="Google Icon">
+            使用 Google 帳號註冊
+        </a>
+        <div class="links">
+            <a href="/login">已有帳號？立即登入</a>
+            <a href="/">回首頁</a>
+        </div>
+    </div>
+
+    <script src="/js/register.js"></script>
+</body>
+</html>

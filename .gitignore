@@ -1,0 +1,25 @@
+# 環境變數
+.env
+.env.*
+!.env.example
+
+# 敏感文件
+client_secret.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虛擬環境
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# 系統文件
+.DS_Store
+Thumbs.db 
