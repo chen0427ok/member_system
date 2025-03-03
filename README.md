@@ -120,7 +120,7 @@ git push heroku main
 
 ## 開發者
 
-- [Your Name](https://github.com/your-username)
+- [陳致希](https://github.com/chen0427ok)
 
 ## 授權
 
